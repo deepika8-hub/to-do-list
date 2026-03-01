@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class ToDoApp {
+public class ui {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         
         int choice;
-        TaskService taskService = new TaskService();
+        Service service = new Service();
         while (true) {
 
             System.out.println("\n===== TO DO LIST MENU =====");
@@ -31,15 +31,15 @@ public class ToDoApp {
                     scanner.nextLine();
                     System.out.print("Enter task title: ");
                     String title = scanner.nextLine();
-                    taskService.addTask(title);
+                    service.addTask(title);
                     break;
 
                 case 2:
-                    taskService.viewTasks();
+                    service.viewTasks();
                     break;
 
                case 3:
-                       if (taskService.isEmpty()) {
+                       if (service.isEmpty()) {
                             System.out.println("No tasks available to update.");
                             break;
                         }
@@ -53,10 +53,10 @@ public class ToDoApp {
                         }
 
                         int idToComplete = scanner.nextInt();
-                        taskService.markTaskCompleted(idToComplete);
+                        service.markTaskCompleted(idToComplete);
                         break;
                 case 4:
-                    if (taskService.isEmpty()) {
+                    if (service.isEmpty()) {
                     System.out.println("No tasks available to delete.");
                     break;
                 }
@@ -70,7 +70,7 @@ public class ToDoApp {
                 }
 
                 int idToDelete = scanner.nextInt();
-                taskService.deleteTask(idToDelete);
+                service.deleteTask(idToDelete);
                 break;
 
                 case 5:

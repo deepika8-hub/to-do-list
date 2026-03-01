@@ -1,11 +1,11 @@
-public class Task {
+public class model {
 
     private int id;
     private String title;
     private boolean isCompleted;
 
     // Constructor
-    public Task(int id, String title) {
+    public model(int id, String title) {
         this.id = id;
         this.title = title;
         this.isCompleted = false;
