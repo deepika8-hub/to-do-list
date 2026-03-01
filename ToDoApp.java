@@ -5,14 +5,17 @@ public class ToDoApp {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        
         int choice;
-
+        TaskService taskService = new TaskService();
         while (true) {
 
             System.out.println("\n===== TO DO LIST MENU =====");
             System.out.println("1. Add Task");
             System.out.println("2. View Tasks");
-            System.out.println("3. Exit");
+            System.out.println("3. Mark Task as Completed");
+            System.out.println("4. Delete Task");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
             if (scanner.hasNextInt()) {
@@ -25,15 +28,53 @@ public class ToDoApp {
              switch (choice) {
 
                 case 1:
-                    System.out.println("Add Task selected");
+                    scanner.nextLine();
+                    System.out.print("Enter task title: ");
+                    String title = scanner.nextLine();
+                    taskService.addTask(title);
                     break;
 
                 case 2:
-                    System.out.println("View Tasks selected");
+                    taskService.viewTasks();
                     break;
 
-                case 3:
-                    System.out.println("Exiting...");
+               case 3:
+                       if (taskService.isEmpty()) {
+                            System.out.println("No tasks available to update.");
+                            break;
+                        }
+
+                        System.out.print("Enter Task ID to mark as completed: ");
+
+                        if (!scanner.hasNextInt()) {
+                            System.out.println("Invalid input!");
+                            scanner.next();
+                            break;
+                        }
+
+                        int idToComplete = scanner.nextInt();
+                        taskService.markTaskCompleted(idToComplete);
+                        break;
+                case 4:
+                    if (taskService.isEmpty()) {
+                    System.out.println("No tasks available to delete.");
+                    break;
+                }
+
+                System.out.print("Enter Task ID to delete: ");
+
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Invalid input!");
+                    scanner.next();
+                    break;
+                }
+
+                int idToDelete = scanner.nextInt();
+                taskService.deleteTask(idToDelete);
+                break;
+
+                case 5:
+                    System.out.println("Exiting application...");
                     scanner.close();
                     return;
 
