@@ -29,7 +29,7 @@ public class model {
         isCompleted = completed;
     }
 
-    // toString method
+    
     @Override
     public String toString() {
         return "ID: " + id +
