@@ -4,7 +4,7 @@ public class model {
     private String title;
     private boolean isCompleted;
 
-    // Constructor
+  
     public model(int id, String title) {
         this.id = id;
         this.title = title;
